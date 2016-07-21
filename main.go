@@ -64,14 +64,18 @@ func remoteDockerExec(ip, port, containerId string) {
 		log.Fatalf("new tls client error: %v\n", err)
 	}
 
-	fmt.Printf("Exec into container %s, please wait...\n", containerId)
+	fmt.Printf("Connecting to container %s, please wait...\n", containerId)
+
+	// select shell order
+	shells := "bash || sh || csh || zsh"
+
 	// create exec
 	createOpts := docker.CreateExecOptions{}
 	createOpts.AttachStdin = true
 	createOpts.AttachStdout = true
 	createOpts.AttachStderr = true
 	createOpts.Tty = true
-	createOpts.Cmd = []string{"sh"}
+	createOpts.Cmd = []string{shells}
 	createOpts.Container = containerId
 
 	exec, err := client.CreateExec(createOpts)
