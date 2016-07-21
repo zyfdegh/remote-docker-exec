@@ -66,16 +66,13 @@ func remoteDockerExec(ip, port, containerId string) {
 
 	fmt.Printf("Connecting to container %s, please wait...\n", containerId)
 
-	// select shell order
-	shells := "bash || sh || csh || zsh"
-
 	// create exec
 	createOpts := docker.CreateExecOptions{}
 	createOpts.AttachStdin = true
 	createOpts.AttachStdout = true
 	createOpts.AttachStderr = true
 	createOpts.Tty = true
-	createOpts.Cmd = []string{shells}
+	createOpts.Cmd = []string{"sh"}
 	createOpts.Container = containerId
 
 	exec, err := client.CreateExec(createOpts)
