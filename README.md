@@ -27,6 +27,9 @@ Support docker 1.11.x with API version 1.23
 
 Note that docker 1.12 has merged swarm into daemon, not test so far.
 
+# Related
+[local-docker-exec][https://github.com/zyfdegh/remote-docker-exec.git]: Connect to local docker daemon or swarm and run command 'sh' in container.
+
 # LICENSE
 MIT
 
